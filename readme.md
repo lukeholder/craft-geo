@@ -1,8 +1,10 @@
 # Geo Plugin for Craft CMS
 
+A simple plugin to get information about your users location.
+
 Put the geo folder in your craft plugins folder.
 
-Available tags in craft
+Variables available in craft twig templates:
 
 ```
 location: {{ craft.geo.location.country_name }}
@@ -23,3 +25,4 @@ You are limited to 10,000 requests an hour for this plugin.
 
 # Licence
 MIT.
+Pull requests welcome.
