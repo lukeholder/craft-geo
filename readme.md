@@ -23,6 +23,12 @@ areacode: {{ craft.geo.location.areacode }}
 
 You are limited to 10,000 requests an hour for this plugin.
 
+# TODO
+
+Need to cache results per IP address. If someone could do a pull request for
+this it would be appreciated. Thinking just a json file in the storage folder
+in craft named by the ip address.
+
 # Licence
 MIT.
 Pull requests welcome.
