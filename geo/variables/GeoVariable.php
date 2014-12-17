@@ -3,8 +3,11 @@ namespace Craft;
 
 class GeoVariable
 {
-    public function location()
+
+    public function info()
     {
-        return craft()->geo_location->getInfo($_SERVER['REMOTE_ADDR']);
+
+        return craft()->geo_location->getInfo();
     }
+
 }

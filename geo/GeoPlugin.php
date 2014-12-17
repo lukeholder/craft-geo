@@ -15,11 +15,11 @@ class GeoPlugin extends BasePlugin
 
     public function getDeveloper()
     {
-        return 'Luke Holder';
+        return 'Luke Holder (Make with Morph)';
     }
 
     public function getDeveloperUrl()
     {
-        return 'http://lukeholder.net';
+        return 'http://makewithmorph.com';
     }
 }
