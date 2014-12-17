@@ -57,6 +57,7 @@ class Geo_LocationService extends BaseApplicationComponent
             "country_code"=>$data->country->iso_code,
             "country_name"=>$data->country->names->en,
             "region_name"=>$data->subdivisions[0]->names->en,
+            // Yes i know, i am not getting postcode etc yet.
             "city"=>$data->city->names->en,
             "latitude"=>$data->location->latitude,
             "longitude"=>$data->location->longitude,
