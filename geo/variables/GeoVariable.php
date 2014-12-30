@@ -4,10 +4,9 @@ namespace Craft;
 class GeoVariable
 {
 
-    public function info()
+    public function info($cache=true)
     {
-
-        return craft()->geo_location->getInfo();
+        return craft()->geo_location->getInfo($cache);
     }
 
 }

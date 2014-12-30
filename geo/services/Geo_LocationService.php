@@ -3,10 +3,10 @@ namespace Craft;
 
 class Geo_LocationService extends BaseApplicationComponent
 {
-    public function getInfo()
+    public function getInfo($doCache)
     {
         $data = array(
-            'ip'=>"",
+            "ip"=>"",
             "country_code"=>"",
             "country_name"=>"",
             "region_code"=>"",
@@ -20,8 +20,16 @@ class Geo_LocationService extends BaseApplicationComponent
             "timezone"=>"",
             "cached"=>false
         );
-    
-        $ip = craft()->config->get('devMode') ? '8.8.8.8' : craft()->request->getIpAddress();
+        
+        $devMode = craft()->config->get('devMode');
+        $ip = craft()->request->getIpAddress();
+
+        $localIps = array("127.0.0.1","::1");
+
+        if(in_array($ip,$localIps) or $devMode)
+        {
+             $ip = craft()->config->get('defaultIp', 'geo');
+        }
 
         $cachedData = craft()->cache->get("craft.geo.".$ip);
 
@@ -33,7 +41,11 @@ class Geo_LocationService extends BaseApplicationComponent
         
         $data = array_merge($data,$this->getNekudoData($ip));
         
-        craft()->cache->add("craft.geo.".$ip,json_encode($data),43200);
+        if($doCache){
+            $seconds = craft()->config->get('cacheTime', 'geo');
+            craft()->cache->add("craft.geo.".$ip,json_encode($data),$seconds);    
+        }
+        
 
         return $data;
     }
@@ -53,7 +65,7 @@ class Geo_LocationService extends BaseApplicationComponent
 
 
         $data = array(
-            'ip'=>$data->traits->ip_address,
+            "ip"=>$data->traits->ip_address,
             "country_code"=>$data->country->iso_code,
             "country_name"=>$data->country->names->en,
             "region_name"=>$data->subdivisions[0]->names->en,

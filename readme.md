@@ -23,10 +23,10 @@ cached: {{ craft.geo.info.cached }}
 ```
 
 You are limited to 10,000 requests an hour for this plugin. It caches a single IP
-address for 12 hours by default - config setting for this will come soon.
+address for 12 hours by default. You can config this with a config file as exaplained below.
 
-If you are in Crafts devMode then a default ip adress of 8.8.8.8 will be used.
-Config for this also to come.
+If you are in Crafts devMode or visiting the site from the server itself then a default ip adress of 190.93.246.7 will be used.
+This setting is configurable by creating a geo.php file in your craft/config folder. An example of this file is found in the geo-examples folder.
 
 # TODO
 
@@ -34,4 +34,5 @@ Add additional API endpoints for API redundancy.
 
 # Licence
 MIT.
+
 Pull requests welcome.
