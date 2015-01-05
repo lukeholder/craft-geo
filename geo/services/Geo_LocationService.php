@@ -39,7 +39,20 @@ class Geo_LocationService extends BaseApplicationComponent
             return $cached;
         }
         
-        $data = array_merge($data,$this->getNekudoData($ip));
+        $apiOne = $this->getNekudoData($ip);
+
+        if (!empty($apiOne)){
+            $data = array_merge($data,$apiOne);
+        }else{
+
+            $apiTwo = $this->getTelizeData($ip);
+
+            if (!empty($apiTwo)){
+                $data = array_merge($data,$apiTwo);
+            }
+
+        }
+
         
         if($doCache){
             $seconds = craft()->config->get('cacheTime', 'geo');
@@ -73,6 +86,30 @@ class Geo_LocationService extends BaseApplicationComponent
             "city"=>$data->city->names->en,
             "latitude"=>$data->location->latitude,
             "longitude"=>$data->location->longitude,
+            "cached"=>false
+        );
+
+        return $data;
+    }
+
+    private function getTelizeData($ip){
+
+        $url = "/geip/".$ip;
+        $telizeClient = new \Guzzle\Http\Client("http://www.telize.com");
+        $response = $telizeClient->get($url)->send();
+
+        if (!$response->isSuccessful()) {
+            return array();
+        }
+
+        $data = json_decode($response->getBody(),true);
+
+        $data = array(
+            "ip"=>$data['ip'],
+            "country_code"=>$data['country_code'],
+            "country_name"=>$data['country'],
+            "latitude"=>$data['latitude'],
+            "longitude"=>$data['longitude'],
             "cached"=>false
         );
 

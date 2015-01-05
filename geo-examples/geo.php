@@ -1,5 +1,7 @@
 <?php
 
+// Place this file in your craft/config folder, nest to general.php
+
 return array(
   // This is the IP address used if in devMode or visiting your site
   // from the local computer to the server.
