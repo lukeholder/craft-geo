@@ -32,6 +32,8 @@ This setting is configurable by creating a geo.php file in your craft/config fol
 
 Add additional API endpoints for API redundancy.
 
+Modularize enpoints so you can add your own endpoint plugins.
+
 # Licence
 MIT.
 
