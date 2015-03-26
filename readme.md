@@ -4,6 +4,19 @@ A simple plugin to get information about your users location.
 
 Put the geo folder in your craft plugins folder.
 
+```
+The following will cache the users location from their ip, so subsequent 
+api calls are not made, but just looked up in the cache:
+{% set data = craft.geo.info(true) %}
+which is the same as:
+{% set data = craft.geo.info() %}
+
+An Api call is made on every page view:
+{% set data = craft.geo.info(false) %}
+
+You can then access the data like this:
+{{ data.country_code }}
+```
 Variables available in craft twig templates:
 
 ```
