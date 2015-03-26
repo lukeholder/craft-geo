@@ -76,14 +76,25 @@ class Geo_LocationService extends BaseApplicationComponent
 
         $data = json_decode($response->getBody());
 
+        if(isset($data->subdivisions[0])){
+            $regionName = $data->subdivisions[0]->names->en;
+        }else{
+            $regionName = "";
+        }
+
+        if(isset($data->city)){
+            $city = $data->city->names->en;
+        }else{
+            $city = "";
+        }
 
         $data = array(
             "ip"=>$data->traits->ip_address,
             "country_code"=>$data->country->iso_code,
             "country_name"=>$data->country->names->en,
-            "region_name"=>$data->subdivisions[0]->names->en,
+            "region_name"=>$regionName,
             // Yes i know, i am not getting postcode etc yet.
-            "city"=>$data->city->names->en,
+            "city"=>$city,
             "latitude"=>$data->location->latitude,
             "longitude"=>$data->location->longitude,
             "cached"=>false
