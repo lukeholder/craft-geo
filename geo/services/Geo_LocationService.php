@@ -75,6 +75,9 @@ class Geo_LocationService extends BaseApplicationComponent
         }
 
         $data = json_decode($response->getBody());
+        if (property_exists($data, "type") && $data->type === "error") {
+            return array();
+        }
 
         if(isset($data->subdivisions[0])){
             $regionName = $data->subdivisions[0]->names->en;
