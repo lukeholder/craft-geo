@@ -68,7 +68,7 @@ class Geo_LocationService extends BaseApplicationComponent
 
         $url = "/api/".$ip."/full";
         $nekudoClient = new \Guzzle\Http\Client("http://geoip.nekudo.com");
-        $response = $nekudoClient->get($url, array("exceptions" => false))->send();
+        $response = $nekudoClient->get($url, array(), array("exceptions" => false))->send();
 
         if (!$response->isSuccessful()) {
             return array();
@@ -110,7 +110,7 @@ class Geo_LocationService extends BaseApplicationComponent
 
         $url = "/geip/".$ip;
         $telizeClient = new \Guzzle\Http\Client("http://www.telize.com");
-        $response = $telizeClient->get($url, array("exceptions" => false))->send();
+        $response = $telizeClient->get($url, array(), array("exceptions" => false))->send();
 
         if (!$response->isSuccessful()) {
             return array();
