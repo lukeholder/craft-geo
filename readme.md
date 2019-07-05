@@ -1,3 +1,12 @@
+# No longer maintained. Will not be upgraded for Craft 3.
+
+Craft 3 alternatives include:
+
+- https://plugins.craftcms.com/geo-cookie
+- https://plugins.craftcms.com/geomate
+- https://plugins.craftcms.com/country-detect
+
+
 # Geo Plugin for Craft CMS
 
 A simple plugin to get information about your users location.
